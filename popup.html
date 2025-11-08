@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp Sound Changer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      width: 380px;
+      min-height: 500px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    .container {
+      padding: 25px;
+      position: relative;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      animation: fadeInDown 0.6s ease;
+    }
+
+    .logo {
+      font-size: 48px;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    }
+
+    .header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+      font-weight: 300;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 0.6s ease;
+    }
+
+    .card-header {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+      opacity: 0.8;
+    }
+
+    .current-sound {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sound-name {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: rgba(255,255,255,0.1);
+      padding: 10px 15px;
+      border-radius: 8px;
+    }
+
+    .btn {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .btn-play {
+      background: linear-gradient(135deg, #25D366 0%, #20bd5a 100%);
+      color: white;
+      padding: 10px 18px;
+      font-size: 13px;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      color: white;
+    }
+
+    .btn-success {
+      width: 100%;
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+    }
+
+    .upload-area {
+      position: relative;
+    }
+
+    .upload-label {
+      display: block;
+      width: 100%;
+      padding: 30px 20px;
+      border: 2px dashed rgba(255,255,255,0.4);
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .upload-label:hover {
+      border-color: rgba(255,255,255,0.7);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .upload-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .upload-text {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .upload-hint {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+
+    .file-selected {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      background: rgba(16, 185, 129, 0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 12px;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .file-selected.show {
+      display: flex;
+    }
+
+    .file-icon {
+      font-size: 24px;
+    }
+
+    .file-info {
+      flex: 1;
+    }
+
+    .file-name {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 3px;
+      word-break: break-all;
+    }
+
+    .file-size {
+      font-size: 11px;
+      opacity: 0.8;
+    }
+
+    .btn-remove {
+      background: rgba(239, 68, 68, 0.8);
+      color: white;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-remove:hover {
+      background: rgba(220, 38, 38, 1);
+      transform: rotate(90deg);
+    }
+
+    .status {
+      display: none;
+      padding: 12px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 15px;
+      animation: slideIn 0.3s ease;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.success {
+      background: rgba(16, 185, 129, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+    }
+
+    .status.error {
+      background: rgba(239, 68, 68, 0.3);
+      border: 1px solid rgba(239, 68, 68, 0.5);
+    }
+
+    .donate-section {
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .donate-icon {
+      font-size: 36px;
+      margin-bottom: 10px;
+      animation: pulse 2s infinite;
+    }
+
+    .donate-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .donate-text {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+
+    .pix-container {
+      background: rgba(0,0,0,0.2);
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .pix-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.7;
+      margin-bottom: 6px;
+    }
+
+    .pix-value {
+      font-size: 15px;
+      font-weight: 600;
+      color: #60a5fa;
+      word-break: break-all;
+    }
+
+    .btn-copy {
+      background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+      color: white;
+      width: 100%;
+    }
+
+    .footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 11px;
+      opacity: 0.6;
+    }
+
+    .debug {
+      background: rgba(0,0,0,0.3);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 11px;
+      font-family: monospace;
+      max-height: 100px;
+      overflow-y: auto;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">🎵</div>
+      <h1>WhatsApp Sound Changer</h1>
+      <p class="subtitle">Personalize seu som de notificação</p>
+    </div>
+
+    <div class="status" id="status"></div>
+
+    <div class="card">
+      <div class="card-header">🔊 SOM ATUAL</div>
+      <div class="current-sound">
+        <div class="sound-name" id="currentSound">notification.mp3</div>
+        <button class="btn btn-play" id="playBtn">▶️ Testar</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">📁 ESCOLHER NOVO SOM</div>
+      <div class="upload-area">
+        <input type="file" id="fileInput" accept=".mp3,audio/mpeg" style="display: none;">
+        <label for="fileInput" class="upload-label" id="uploadLabel">
+          <span class="upload-icon">📤</span>
+          <div class="upload-text">Clique para escolher</div>
+          <div class="upload-hint">MP3 • Máx 500KB</div>
+        </label>
+        
+        <div class="file-selected" id="fileSelected">
+          <span class="file-icon">🎵</span>
+          <div class="file-info">
+            <div class="file-name" id="fileName"></div>
+            <div class="file-size" id="fileSize"></div>
+          </div>
+          <button class="btn-remove" id="removeBtn">✖</button>
+        </div>
+      </div>
+      
+      <button class="btn btn-success" id="submitBtn" disabled style="margin-top: 15px;">
+        ✅ Usar este som
+      </button>
+    </div>
+
+    <div class="donate-section">
+      <div class="donate-icon">💙</div>
+      <div class="donate-title">Gostou da extensão?</div>
+      <div class="donate-text">Me ajude a continuar desenvolvendo! Qualquer valor é bem-vindo ☕</div>
+      
+      <div class="pix-container">
+        <div class="pix-label">USDT (BEP20)</div>
+        <div class="pix-value" id="pixKey">0xc2c5c30beba21134f9b1fb218c814a2e29f4ad54</div>
+      </div>
+      
+      <button class="btn btn-copy" id="copyPixBtn">
+        📋 Copiar endereço USDT
+      </button>
+    </div>
+
+    <div class="footer">
+      Feito com ❤️ • Versão 5.0
+    </div>
+  </div>
+  
+  <script src="popup.js"></script> 
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "WhatsApp Sound Changer",
+  "version": "1.0.0",
+  "description": "Personalize o som de notificação do WhatsApp Web com qualquer arquivo MP3 do seu computador",
+  "author": "Seu Nome",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png",
+    "default_title": "WhatsApp Sound Changer"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://web.whatsapp.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["inject.js"],
+      "matches": ["*://web.whatsapp.com/*"]
+    }
+  ],
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://web.whatsapp.com/*"
+  ]
+}
