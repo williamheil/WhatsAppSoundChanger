@@ -1,126 +1,164 @@
-Personalize o som de notificação do WhatsApp Web com qualquer arquivo MP3 do seu computador!
+# 🎵 WhatsApp Web Sound Changer
 
-📖 Sobre
-Uma extensão para Google Chrome/Edge que permite você personalizar completamente o som de notificação do WhatsApp Web. Cansou daquele "ding" padrão? Agora você pode usar qualquer MP3 que quiser!
-✨ Características
+**Personalize o som de notificação do WhatsApp Web com qualquer arquivo MP3 do seu computador!**
 
-🎵 Personalize seu som: Use qualquer arquivo MP3 (até 500KB)
-🔊 Teste antes de aplicar: Ouça o som antes de salvar
-💾 Armazenamento local: Seu som fica salvo no navegador
-🚀 Leve e rápido: Não afeta a performance do WhatsApp
-🎨 Interface moderna: Design bonito e fácil de usar
-🔒 100% seguro: Todo código é aberto e auditável
+---
 
-🚀 Instalação
-Método 1: Via Chrome Web Store (em breve)
-Aguarde a publicação na Chrome Web Store
-Método 2: Instalação Manual (Modo Desenvolvedor)
+## 📖 Sobre
 
-Clone o repositório
+Uma extensão para **Google Chrome** e **Microsoft Edge** que permite personalizar completamente o som de notificação do **WhatsApp Web**.  
+Cansou daquele "ding" padrão? Agora você pode usar **qualquer MP3** que quiser! 🔥
 
-bashgit clone https://github.com/seu-usuario/whatsapp-sound-changer.git
-cd whatsapp-sound-changer
+---
 
-Abra o Chrome/Edge e vá para as extensões
+## ✨ Características
 
-Chrome: chrome://extensions/
-Edge: edge://extensions/
+- 🎵 **Som personalizado:** Use qualquer arquivo MP3 (até **500KB**)
+- 🔊 **Teste antes de aplicar:** Ouça o som antes de salvar
+- 💾 **Armazenamento local:** Seu som é salvo no próprio navegador
+- 🚀 **Leve e rápido:** Não afeta o desempenho do WhatsApp
+- 🎨 **Interface moderna:** Bonita, responsiva e fácil de usar
+- 🔒 **100% seguro:** Código aberto e totalmente auditável
 
+---
 
-Ative o "Modo do desenvolvedor" (canto superior direito)
-Clique em "Carregar sem compactação"
-Selecione a pasta do projeto que você clonou
-Pronto! A extensão estará instalada ✅
+## 🚀 Instalação
 
-📱 Como Usar
+### 🔹 Método 1 — Chrome Web Store (em breve)
 
-Clique no ícone da extensão 🎵 na barra do Chrome
-Escolha um arquivo MP3 (máximo 500KB)
-Teste o som clicando em "▶️ Testar"
-Clique em "✅ Usar este som"
-Recarregue o WhatsApp Web (pressione F5)
-Pronto! Agora receba notificações com seu som personalizado 🎉
+Aguarde a publicação oficial na loja.
 
-🎨 Screenshots
-Mostrar Imagem
-Mostrar Imagem
-Mostrar Imagem
-🛠️ Tecnologias Utilizadas
+### 🔹 Método 2 — Instalação Manual (Modo Desenvolvedor)
 
-JavaScript ES6+: Lógica principal
-Chrome Extension Manifest V3: Arquitetura da extensão
-Chrome Storage API: Armazenamento local
-Web Audio API: Reprodução de áudio
-HTML5/CSS3: Interface moderna
+1. **Clone o repositório:**
+```bash
+git clone https://github.com/williamheil/WhatsAppSoundChanger.git
+cd WhatsAppSoundChanger
+```
 
-📂 Estrutura do Projeto
-whatsapp-sound-changer/
+2. **Abra o gerenciador de extensões:**
+   - Chrome: `chrome://extensions/`
+   - Edge: `edge://extensions/`
+
+3. **Ative o "Modo do desenvolvedor"** (canto superior direito)
+
+4. **Clique em "Carregar sem compactação"**
+
+5. **Selecione a pasta do projeto** que você clonou
+
+✅ **Pronto! A extensão estará instalada.**
+
+---
+
+## 📱 Como Usar
+
+1. Clique no ícone 🎵 da extensão na barra do Chrome
+2. Escolha um arquivo MP3 (máximo 500KB)
+3. Clique em "▶️ Testar" para ouvir
+4. Clique em "✅ Usar este som"
+5. Recarregue o WhatsApp Web (F5)
+
+🎉 **Pronto! Agora suas notificações tocam com seu som personalizado!**
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **JavaScript (ES6+)** — Lógica principal
+- **Chrome Extension Manifest V3** — Estrutura da extensão
+- **Chrome Storage API** — Armazenamento local
+- **Web Audio API** — Reprodução do áudio
+- **HTML5 / CSS3** — Interface moderna e leve
+
+---
+
+## 📂 Estrutura do Projeto
+```
+WhatsAppSoundChanger/
 ├── manifest.json       # Configuração da extensão
 ├── popup.html          # Interface da extensão
 ├── popup.js            # Lógica da interface
 ├── content.js          # Script injetado no WhatsApp
-├── inject.js           # Script que intercepta o Audio
+├── inject.js           # Intercepta o som padrão
 ├── icon.png            # Ícone da extensão
 └── README.md           # Este arquivo
-🔧 Como Funciona
-A extensão funciona interceptando o construtor Audio() do JavaScript na página do WhatsApp Web. Quando o WhatsApp tenta reproduzir o som de notificação padrão, a extensão substitui pelo seu MP3 personalizado.
-Fluxo Técnico:
+```
 
-content.js injeta inject.js na página
-inject.js sobrescreve window.Audio
-Quando WhatsApp cria um new Audio() para notificação
-O som é substituído pelo MP3 do usuário (armazenado em base64)
-O áudio personalizado é reproduzido
+---
 
-🤝 Contribuindo
-Contribuições são bem-vindas! Sinta-se livre para:
+## 🔧 Como Funciona
 
-Fazer um Fork do projeto
-Criar uma Branch para sua feature (git checkout -b feature/NovaFeature)
-Commit suas mudanças (git commit -m 'Adiciona nova feature')
-Push para a Branch (git push origin feature/NovaFeature)
-Abrir um Pull Request
+A extensão intercepta o construtor `Audio()` do WhatsApp Web.  
+Sempre que o WhatsApp tenta tocar o som padrão, a extensão substitui o áudio pelo seu MP3 personalizado.
 
-Ideias para contribuir:
+**Fluxo técnico:**
 
- Adicionar biblioteca de sons pré-definidos
- Suporte para outros formatos de áudio (WAV, OGG)
- Opção de volume customizado
- Sons diferentes para contatos/grupos específicos
- Modo escuro na interface
+1. `content.js` injeta `inject.js` na página
+2. `inject.js` sobrescreve `window.Audio`
+3. Quando o WhatsApp chama `new Audio()` para o som de notificação
+4. O som é substituído pelo MP3 do usuário (armazenado em base64)
+5. O áudio personalizado é reproduzido 🎧
 
-🐛 Encontrou um Bug?
-Abra uma Issue descrevendo:
+---
 
-O que aconteceu
-O que você esperava que acontecesse
-Passos para reproduzir o problema
-Screenshots (se possível)
+## 🤝 Contribuindo
 
-❓ FAQ
-P: A extensão funciona no WhatsApp Desktop (aplicativo)?
-R: Não, apenas no WhatsApp Web (navegador).
-P: Por que preciso recarregar a página?
-R: A interceptação do áudio acontece no carregamento da página, então é necessário recarregar.
-P: Meu som não está tocando!
-R: Verifique se o arquivo é MP3 válido e está abaixo de 500KB.
-P: É seguro usar esta extensão?
-R: Sim! Todo o código é aberto e pode ser auditado. A extensão não coleta dados.
-P: Funciona em outros navegadores?
-R: Funciona em navegadores baseados em Chromium (Chrome, Edge, Brave, Opera).
-💝 Apoie o Projeto
-Se você gostou da extensão e quer apoiar o desenvolvimento:
-PIX: sdh@hotmail.com.br
-Qualquer valor é bem-vindo e ajuda a manter o projeto! ☕
-📄 Licença
-Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
-👨‍💻 Autor
-Feito com ❤️ por Seu Nome
+Contribuições são muito bem-vindas! 💡
 
-⭐ Se gostou do projeto, deixe uma estrela no GitHub!
-🔗 Links Úteis
+1. Faça um **Fork** do projeto
+2. Crie uma branch para sua feature
+```bash
+git checkout -b feature/minha-feature
+```
 
-Reportar Bug
-Solicitar Feature
-Documentação do Chrome Extensions
-WhatsApp Web
+3. Commit suas alterações
+```bash
+git commit -m "Adiciona nova feature"
+```
+
+4. Envie sua branch
+```bash
+git push origin feature/minha-feature
+```
+
+5. Abra um **Pull Request** 🚀
+
+**Ideias para contribuir:**
+- Biblioteca de sons pré-definidos
+- Suporte para outros formatos (WAV, OGG)
+- Controle de volume
+- Sons diferentes por contato/grupo
+- Modo escuro 🌙
+
+---
+
+## 🐛 Reportar Bug
+
+Abra uma **[Issue](https://github.com/williamheil/WhatsAppSoundChanger/issues)** descrevendo:
+- O que aconteceu
+- O que esperava que acontecesse
+- Passos para reproduzir
+- Capturas de tela (se possível)
+
+---
+
+## ❓ FAQ
+
+**P: Funciona no WhatsApp Desktop (app)?**  
+R: Não. Apenas no WhatsApp Web.
+
+**P: Por que preciso recarregar a página?**  
+R: A interceptação do áudio ocorre no carregamento da página.
+
+**P: Meu som não toca!**  
+R: Verifique se o arquivo é MP3 válido e menor que 500KB.
+
+**P: É seguro usar?**  
+R: Sim! O código é 100% aberto e não coleta dados.
+
+**P: Funciona em outros navegadores?**  
+R: Sim, em qualquer navegador baseado em Chromium (Chrome, Edge, Brave, Opera).
+
+---
+
+⭐ **Se gostou do projeto, deixe uma estrela no GitHub!**
