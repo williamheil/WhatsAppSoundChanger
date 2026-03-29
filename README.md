@@ -26,15 +26,7 @@ Cansou daquele "ding" padrão? Agora você pode usar **qualquer MP3** que quiser
 
 ### 🔹 Método 1 — Chrome Web Store (em breve)
 
-Aguarde a publicação oficial na loja.
-
-### 🔹 Método 2 — Instalação Manual (Modo Desenvolvedor)
-
-1. **Clone o repositório:**
-```bash
-git clone https://github.com/williamheil/WhatsAppSoundChanger.git
-cd WhatsAppSoundChanger
-```
+> Baixe o zip [Aqui]([https://github.com/williamheil/x-autolike-extension/archive/refs/heads/main.zip](https://github.com/williamheil/x-autolike-extension/edit/main/README.md)) e siga as instruções abaixo.
 
 2. **Abra o gerenciador de extensões:**
    - Chrome: `chrome://extensions/`
