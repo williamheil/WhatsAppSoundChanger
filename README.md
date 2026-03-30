@@ -24,7 +24,7 @@ Cansou daquele "ding" padrão? Agora você pode usar **qualquer MP3** que quiser
 
 ## 🚀 Instalação
 
-> Baixe o zip [Aqui](https://github.com/williamheil/WhatsAppSoundChanger/archive/refs/heads/main.zip) e siga as instruções abaixo.
+> Baixe o zip [Aqui]([https://github.com/williamheil/WhatsAppSoundChanger/archive/refs/heads/main.zip](https://github.com/williamheil/WhatsAppSoundChanger/releases/download/v0.0.1/WhatsAppSoundChanger-main.zip)) e siga as instruções abaixo.
 
 ---
 
